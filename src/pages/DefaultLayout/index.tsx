@@ -1,20 +1,29 @@
-import { ShoppingCart } from "phosphor-react";
+import { MapPin, ShoppingCart } from "phosphor-react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useTheme } from "styled-components";
 import coffeeLogo from '../../assets/coffee-logo.svg'
+import { Header, Wrapper, Location } from "./styles";
 
 
 export function DefaultLayout() {
+  const defaultTheme = useTheme()
   return (
-    <div>
-      <header>
+    <Wrapper>
+      <Header>
         <NavLink to="/">
           <img src={coffeeLogo} alt="Coffee Delivery" />
         </NavLink>
-        <NavLink to="/checkout">
-          <ShoppingCart size={24} weight="fill" />
-        </NavLink>
-      </header>
+        <div>
+          <Location>
+            <MapPin color={defaultTheme["purple-500"]} weight="fill" size={20} className="map_icon" />
+            Porto Alegre, RS
+          </Location>
+          <NavLink to="/checkout" className="cart_btn" data-count="3">
+            <ShoppingCart color={defaultTheme["yellow-700"]} weight="fill" size={20} />
+          </NavLink>
+        </div>
+      </Header>
       <Outlet />
-    </div>
+    </Wrapper>
   )
 }
