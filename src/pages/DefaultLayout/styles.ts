@@ -5,8 +5,26 @@ export const Wrapper = styled.div`
   margin: 2rem auto;
 
   display: grid;
-  /* align-items: space-between; */
-  /* justify-content: space-between; */
+`
+
+const NotificationBall = `
+  content: attr(data-count);
+
+  min-width: 16px;
+  min-height: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: -10px;
+  right: -10px;
+
+  padding: 2px;
+
+  font-size: 12px;
+  border-radius: 50%;
 `
 
 export const Header = styled.header`
@@ -39,24 +57,7 @@ export const Header = styled.header`
       }
 
       &::before {
-        content: attr(data-count);
-
-        min-width: 16px;
-        min-height: 16px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        position: absolute;
-        top: -10px;
-        right: -10px;
-
-        padding: 2px;
-
-        font-size: 12px;
-        border-radius: 50%;
-
+        ${NotificationBall}
         background: ${(props) => props.theme["yellow-700"]};
       }
     }
