@@ -10,7 +10,7 @@ export function DefaultLayout() {
   return (
     <Wrapper>
       <Header>
-        <NavLink to="/">
+        <NavLink to="/" className="logo">
           <img src={coffeeLogo} alt="Coffee Delivery" />
         </NavLink>
         <div>

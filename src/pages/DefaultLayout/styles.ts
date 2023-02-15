@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  max-width: 46rem;
+  max-width: 70rem;
   margin: 2rem auto;
 
   display: grid;
@@ -33,6 +33,10 @@ export const Header = styled.header`
   align-items: center;
 
   width: 100%;
+
+  .logo {
+    width: 5.25rem;
+  }
 
   div {
     display: flex;
