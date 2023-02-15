@@ -22,13 +22,21 @@ export const Header = styled.header`
 
     .cart_btn {
       background: ${(props) => props.theme["yellow-100"]};
-      color: ${(props) => props.theme["yellow-700"]};
+      color: ${(props) => props.theme.white};
 
       margin-right: .75rem;
-      padding: 8px 8px;
+      padding: 10px 8px 6px 8px;
       border-radius: 8px;
 
       position: relative;
+      transition: all .2s ease-out;
+
+      &:hover {
+        background: ${(props) => props.theme["yellow-500"]};
+        svg {
+          fill: ${(props) => props.theme.white}
+        }
+      }
 
       &::before {
         content: attr(data-count);
@@ -50,7 +58,6 @@ export const Header = styled.header`
         border-radius: 50%;
 
         background: ${(props) => props.theme["yellow-700"]};
-        color: ${(props) => props.theme.white}
       }
     }
   }
