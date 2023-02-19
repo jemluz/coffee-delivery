@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import bannerBg from '../../assets/banner-bg.png'
+import bannerBg from '../../../../assets/banner-bg.png'
 import { defaultTheme } from "../../../../styles/defaultTheme";
 
 export type BenefitsColors = 'orange' | 'yellow' | 'brown' | 'purple';
