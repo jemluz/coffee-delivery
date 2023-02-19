@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
+
 export const Wrapper = styled.div`
-  max-width: 70rem;
   margin: 2rem auto;
 
   display: grid;
+  grid-template-columns: 1fr 70rem 1fr;
 `
 
 const NotificationBall = `
@@ -31,6 +32,8 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  grid-column: 2;
 
   width: 100%;
 

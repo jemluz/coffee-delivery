@@ -22,8 +22,8 @@ export const BannerContainer = styled.div`
 
   height: 544px;
   width: 100vw;
-  position: absolute;
-  right: 0;
+
+  grid-column: 1 / 4;
 
   display: grid;
   grid-template-columns: 1fr auto;
