@@ -26,6 +26,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
   }
 
+  li {
+    list-style: none;
+  }
+
   @media (max-width: 768px) {
     html {
       font-size: 87.5%;
