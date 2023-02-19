@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import bannerBg from '../../assets/banner-bg.png'
-import { defaultTheme } from "../../styles/defaultTheme";
+import { defaultTheme } from "../../../../styles/defaultTheme";
 
 export type BenefitsColors = 'orange' | 'yellow' | 'brown' | 'purple';
 
@@ -15,7 +15,7 @@ const benefitsColors = {
   purple: defaultTheme["purple-500"]
 }
 
-export const Banner = styled.div`
+export const BannerContainer = styled.div`
   background-image: url(${bannerBg});
   background-repeat: no-repeat;
   background-size: cover;
