@@ -1,13 +1,6 @@
-export interface ProductProps {
-  id: number
-  imgUrl: string
-  type: string[]
-  name: string
-  description: string
-  price: number
-}
+import { ProductModel } from "../../../../../models/interfaces"
 
-export function Product(props: ProductProps) {
+export function Product(props: ProductModel) {
   return (
     <li>
       <div>
