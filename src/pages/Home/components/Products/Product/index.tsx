@@ -1,20 +1,21 @@
 import { ProductModel } from "../../../../../models/interfaces"
+import { ProductContainer, ProductInfo, Tag, TagsContainer } from "./styles"
 
 export function Product(props: ProductModel) {
   return (
-    <li>
-      <div>
+    <ProductContainer>
+      <ProductInfo>
         <img src={props.imgUrl} alt="" />
 
-        <div>
+        <TagsContainer>
           {props.type.map((type) => {
-            return <span key={props.id} >{type}</span>
+            return <Tag key={props.id} >{type}</Tag>
           })}
-        </div>
+        </TagsContainer>
 
         <h4>{props.name}</h4>
         <p>{props.description}</p>
-      </div>
+      </ProductInfo>
 
       <div>
         <p>
@@ -31,6 +32,6 @@ export function Product(props: ProductModel) {
         // {...register('minutesAmount', { valueAsNumber: true })}
         />
       </div>
-    </li>
+    </ProductContainer>
   )
 }

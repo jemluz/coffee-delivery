@@ -15,7 +15,7 @@ import Havaiano from './assets/coffee/Type=Havaiano.png'
 import Arabe from './assets/coffee/Type=Árabe.png'
 import Irlandes from './assets/coffee/Type=Irlandês.png'
 
-export const products: ProductModel[] = [
+export const productsData: ProductModel[] = [
   {
     id: String(new Date().getTime()),
     name: 'Expresso Tradicional',
