@@ -1,5 +1,6 @@
+import { ShoppingCartSimple } from "phosphor-react"
 import { ProductModel } from "../../../../../models/interfaces"
-import { ProductContainer, ProductInfo, Tag, TagsContainer } from "./styles"
+import { ProductContainer, ProductInfo, ProductPrice, Tag, TagsContainer } from "./styles"
 
 export function Product(props: ProductModel) {
   return (
@@ -17,21 +18,28 @@ export function Product(props: ProductModel) {
         <p>{props.description}</p>
       </ProductInfo>
 
-      <div>
+      <ProductPrice>
         <p>
-          R$<strong>{props.price}</strong>
+          R$ <strong>{props.price.toFixed(2)}</strong>
         </p>
 
-        <input
-          type="number"
-          id="amount"
-          placeholder="1"
-          step={5}
-          min={1}
-          max={30}
-        // {...register('minutesAmount', { valueAsNumber: true })}
-        />
-      </div>
+        <div>
+          <input
+            type="number"
+            id="amount"
+            placeholder="1"
+            step={5}
+            min={1}
+            max={30}
+          // {...register('minutesAmount', { valueAsNumber: true })}
+          />
+
+          <button>
+            <ShoppingCartSimple size={22} weight="fill" color="#fff" />
+          </button>
+        </div>
+
+      </ProductPrice>
     </ProductContainer>
   )
 }

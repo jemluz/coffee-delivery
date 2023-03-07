@@ -55,4 +55,37 @@ export const Tag = styled.span`
 `
 
 export const ProductPrice = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+
+  p > strong {
+    font-family: 'Baloo 2', cursive;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    input {
+      background: ${(p) => p.theme["gray-400"]};
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      margin-right: 8px;
+      text-align: center;
+
+      height: 100%;
+      width: 72px;
+    }
+
+    button {
+      background: ${(p) => p.theme["purple-700"]};
+      border-radius: 6px;
+      padding: 8px 10px;
+      border: none;
+    }
+  }  
 `

@@ -19,6 +19,7 @@ export const BannerContainer = styled.div`
   background-image: url(${bannerBg});
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: 50% 60%;
 
   height: 544px;
   width: 100vw;
@@ -32,6 +33,7 @@ export const BannerContainer = styled.div`
   align-items: center;
 
   padding: 5.875rem calc((100vw - 70rem) / 2);
+  margin-top: 20px;
 `
 
 export const RightSection = styled.section`
