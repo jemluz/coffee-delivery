@@ -1,3 +1,5 @@
 export function Checkout() {
-  return <p>Checkout</p>
+  return (
+    <div></div>
+  )
 }

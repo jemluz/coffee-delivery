@@ -86,6 +86,11 @@ export const ProductPrice = styled.div`
       border-radius: 6px;
       padding: 8px 10px;
       border: none;
+
+      &:hover {
+        cursor: pointer;
+        background: ${(p) => p.theme["purple-800"]};
+      }
     }
   }  
 `

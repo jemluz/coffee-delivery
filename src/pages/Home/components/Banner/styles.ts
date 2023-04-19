@@ -34,6 +34,16 @@ export const BannerContainer = styled.div`
 
   padding: 5.875rem calc((100vw - 70rem) / 2);
   margin-top: 20px;
+
+  &::after {
+    position: absolute;
+    content:"";
+    height: 544px;
+    width: 100%;
+    top: 5.8rem;
+    left:0;
+    background: linear-gradient(to bottom, #fafafa 0%, #fafafa00 20%, #fafafa00 80%,  #fafafa 100%);
+  }
 `
 
 export const RightSection = styled.section`
