@@ -1,9 +1,9 @@
 import { Product } from "./Product";
 import { ProductsList } from "./styles";
-import { productsData } from '../../../../products'
+import { productsData } from '../../../../utils/products'
+import { useEffect, useState } from "react";
 
 export function Products() {
-  console.log(productsData)
   return (
     <ProductsList>
       <h2>Nossos cafés</h2>

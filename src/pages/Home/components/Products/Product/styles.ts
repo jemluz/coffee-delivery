@@ -69,23 +69,12 @@ export const ProductPrice = styled.div`
     display: flex;
     align-items: center;
 
-    input {
-      background: ${(p) => p.theme["gray-400"]};
-      border-radius: 6px;
-      border: none;
-      outline: none;
-      margin-right: 8px;
-      text-align: center;
-
-      height: 100%;
-      width: 72px;
-    }
-
     button {
       background: ${(p) => p.theme["purple-700"]};
       border-radius: 6px;
       padding: 8px 10px;
       border: none;
+      margin-left: 12px;
 
       &:hover {
         cursor: pointer;
@@ -93,4 +82,49 @@ export const ProductPrice = styled.div`
       }
     }
   }  
+`
+
+export const Counter = styled.div`
+  display: flex;
+
+  input {
+    background: ${(p) => p.theme["gray-400"]};
+    border: none;
+    outline: none;
+    text-align: center;
+
+    height: 32px;
+    width: 28px;
+  }
+
+  /* Hide arrows -> Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hide arrows ->Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  .minus {
+    border-radius: 6px 0px 0px 6px;
+  }
+
+  .plus {
+    border-radius: 0px 6px 6px 0px;
+  }
+
+  .minus, .plus {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* width: 24px; */
+    height:32px;
+    background: ${(p) => p.theme["gray-400"]};;
+    padding:8px 5px;
+    border:1px solid #ddd;
+  }
 `
