@@ -1,8 +1,8 @@
 import { ShoppingCartSimple } from "phosphor-react"
-import { ProductModel } from "../../../../../models/interfaces"
+import { ProductModel } from "../../../models/interfaces"
 import { Counter, ProductContainer, ProductInfo, ProductPrice, Tag, TagsContainer } from "./styles"
 import { useEffect, useState } from "react"
-import { uid } from "../../../../../utils/coffeUtils"
+import { uid } from "../../../utils/coffeUtils"
 
 export function Product(props: ProductModel) {
   const [units, setUnits] = useState(0)

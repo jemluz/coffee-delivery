@@ -1,5 +1,5 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import { defaultTheme } from "../../../../styles/defaultTheme";
+import { defaultTheme } from "../../../styles/defaultTheme";
 import { BannerContainer, Benefit, BenefitsList, CoffeeImg, Column, RightSection, Title } from "./styles";
 import coffeeBaner from '../../../../assets/coffee-banner.png'
 

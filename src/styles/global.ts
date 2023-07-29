@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 // font-family: 'Baloo 2', cursive;
 // font-family: 'Roboto', sans-serif;
@@ -35,4 +35,12 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 87.5%;
     }
   }
+`
+
+export const MainGrid = styled.main`
+  display: grid;
+  grid-template-columns: 1fr 70rem 1fr;
+  /* grid-template-rows: 1fr 1fr; */
+
+  grid-column: 1 / 4;
 `

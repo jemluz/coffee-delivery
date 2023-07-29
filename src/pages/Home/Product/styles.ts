@@ -123,8 +123,8 @@ export const Counter = styled.div`
     align-items: center;
     /* width: 24px; */
     height:32px;
-    background: ${(p) => p.theme["gray-400"]};;
+    background: ${(p) => p.theme["gray-400"]};
     padding:8px 5px;
-    border:1px solid #ddd;
+    color: ${(p) => p.theme["purple-500"]};
   }
 `

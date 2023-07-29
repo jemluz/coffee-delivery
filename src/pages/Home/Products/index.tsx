@@ -1,6 +1,6 @@
-import { Product } from "./Product";
+import { Product } from "../Product";
 import { ProductsList } from "./styles";
-import { productsData } from '../../../../utils/products'
+import { productsData } from '../../../utils/products'
 import { useEffect, useState } from "react";
 
 export function Products() {

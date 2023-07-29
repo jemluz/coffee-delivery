@@ -1,12 +1,12 @@
-import { Banner } from "./components/Banner";
-import { Products } from "./components/Products";
-import { Main } from "./styles";
+import { MainGrid } from "../../styles/global";
+import { Banner } from "./Banner";
+import { Products } from "./Products";
 
 export function Home() {
   return (
-    <Main>
+    <MainGrid>
       <Banner />
       <Products />
-    </Main>
+    </MainGrid>
   )
 }
