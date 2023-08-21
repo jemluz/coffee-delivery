@@ -6,6 +6,8 @@ export function Checkout() {
     <MainGrid>
       <CheckoutGrid>
         <CompleteOrderForm>
+          <h3>Complete o seu pedido</h3>
+
           <DeliveryAdress>
             <FormLabel>
               <img src="" alt="" />
@@ -15,20 +17,20 @@ export function Checkout() {
               </div>
             </FormLabel>
 
-            <div>
-              <input type="number" name="cep" id="" />
+            <div className="cep">
+              <input type="number" name="cep" placeholder="CEP" id="" />
             </div>
-            <div>
-              <input type="text" name="street" id="" />
+            <div className="street">
+              <input type="text" name="street" placeholder="Rua" id="" />
             </div>
-            <div>
-              <input type="text" name="number" id="" />
-              <input type="text" name="additional info" id="" />
+            <div className="number_and_info">
+              <input type="text" name="number" placeholder="Número" id="" />
+              <input type="text" name="additional_info" placeholder="Complemento" id="" />
             </div>
-            <div>
-              <input type="text" name="neighborhood" id="" />
-              <input type="text" name="city" id="" />
-              <input type="text" name="uf" id="" />
+            <div className="neighborhood_city_and_uf">
+              <input type="text" name="neighborhood" placeholder="Bairro" id="" />
+              <input type="text" name="city" placeholder="Cidade" id="" />
+              <input type="text" name="uf" placeholder="UF" id="" />
             </div>
           </DeliveryAdress>
 
