@@ -1,4 +1,5 @@
 import { MainGrid } from "../../styles/global";
+import { UF_states } from "../../utils/states";
 import { CheckoutGrid, CompleteOrderForm, DeliveryAdress, FormLabel, OrderOverview, PaymentOptions } from "./styles";
 
 export function Checkout() {
@@ -30,7 +31,14 @@ export function Checkout() {
             <div className="neighborhood_city_and_uf">
               <input type="text" name="neighborhood" placeholder="Bairro" id="" />
               <input type="text" name="city" placeholder="Cidade" id="" />
-              <input type="text" name="uf" placeholder="UF" id="" />
+              <select name="uf" id="" >
+                <option value="UF" selected disabled>UF</option>
+                {
+                  UF_states.map(uf => {
+                    return <option value={uf.acronym}>{uf.acronym}</option>
+                  })
+                }
+              </select>
             </div>
           </DeliveryAdress>
 

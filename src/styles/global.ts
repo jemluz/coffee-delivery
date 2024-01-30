@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from "styled-components";
 
 // font-family: 'Baloo 2', cursive;
 // font-family: 'Roboto', sans-serif;
@@ -11,16 +11,16 @@ export const GlobalStyle = createGlobalStyle`
   }
   :focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['purple-700']};
+    box-shadow: 0 0 0 2px ${(props) => props.theme["purple-700"]};
     border-radius: 8px;
   }
 
-  body {
-    background: ${(props) => props.theme['gray-100']};
-    color: ${(props) => props.theme['brown-500']};
+  body, select {
+    background: ${(props) => props.theme["gray-100"]};
+    color: ${(props) => props.theme["brown-500"]};
   }
 
-  body, input, textarea, button {
+  body, input, select, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 87.5%;
     }
   }
-`
+`;
 
 export const MainGrid = styled.main`
   display: grid;
@@ -43,4 +43,4 @@ export const MainGrid = styled.main`
   /* grid-template-rows: 1fr 1fr; */
 
   grid-column: 1 / 4;
-`
+`;
