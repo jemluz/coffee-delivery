@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-
 export const Wrapper = styled.div`
   margin: 2rem auto;
 
   display: grid;
   grid-template-columns: 1fr 70rem 1fr;
-`
+`;
 
 const NotificationBall = `
   content: attr(data-count);
@@ -26,7 +25,7 @@ const NotificationBall = `
 
   font-size: 12px;
   border-radius: 50%;
-`
+`;
 
 export const Header = styled.header`
   display: flex;
@@ -49,17 +48,17 @@ export const Header = styled.header`
       background: ${(props) => props.theme["yellow-100"]};
       color: ${(props) => props.theme.white};
 
-      margin-right: .75rem;
+      margin-right: 0.75rem;
       padding: 10px 8px 6px 8px;
       border-radius: 8px;
 
       position: relative;
-      transition: all .2s ease-out;
+      transition: all 0.2s ease-out;
 
       &:hover {
         background: ${(props) => props.theme["yellow-500"]};
         svg {
-          fill: ${(props) => props.theme.white}
+          fill: ${(props) => props.theme.white};
         }
       }
 
@@ -69,7 +68,7 @@ export const Header = styled.header`
       }
     }
   }
-`
+`;
 
 export const Location = styled.p`
   background: ${(props) => props.theme["purple-100"]};
@@ -78,11 +77,11 @@ export const Location = styled.p`
   display: flex;
   align-items: center;
 
-  margin-right: .75rem;
+  margin-right: 0.75rem;
   padding: 10px 8px;
   border-radius: 8px;
 
   .map_icon {
-    margin-right: .25rem;
+    margin-right: 0.25rem;
   }
-`
+`;

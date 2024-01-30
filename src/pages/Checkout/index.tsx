@@ -1,17 +1,19 @@
+import { CurrencyDollar, MapPinLine } from "phosphor-react";
 import { MainGrid } from "../../styles/global";
 import { UF_states } from "../../utils/states";
-import { CheckoutGrid, CompleteOrderForm, DeliveryAdress, FormLabel, OrderOverview, PaymentOptions } from "./styles";
+import { CheckoutGrid, CompleteOrderForm, DeliveryAdress, FormLabel, Heading3, OrderOverview, PaymentOptions } from "./styles";
+import { defaultTheme } from "../../styles/defaultTheme";
 
 export function Checkout() {
   return (
     <MainGrid>
       <CheckoutGrid>
         <CompleteOrderForm>
-          <h3>Complete o seu pedido</h3>
+          <Heading3>Complete o seu pedido</Heading3>
 
           <DeliveryAdress>
             <FormLabel>
-              <img src="" alt="" />
+              <MapPinLine size={24} color={defaultTheme["yellow-700"]} />
               <div>
                 <h3>Endereço de Entrega</h3>
                 <p>Informe o endereço onde deseja receber seu pedido</p>
@@ -44,7 +46,7 @@ export function Checkout() {
 
           <PaymentOptions>
             <FormLabel>
-              <img src="" alt="" />
+              <CurrencyDollar size={24} color={defaultTheme["purple-500"]} />
               <div>
                 <h3>Pagamento</h3>
                 <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>

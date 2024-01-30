@@ -2,30 +2,43 @@ import styled from "styled-components";
 
 export const CheckoutGrid = styled.div`
   display: grid;
+  grid-column: 2 / 3;
   grid-template-columns: 40rem 28rem;
   gap: 2rem;
+  margin: auto;
+  align-items: center;
 `;
 
-export const CompleteOrderForm = styled.div``;
+export const CompleteOrderForm = styled.div`
+  margin-top: 3rem;
+`;
 
-export const FormLabel = styled.div``;
+export const Heading3 = styled.h3`
+  font-family: "Baloo 2", cursive;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+`;
+
+export const FormLabel = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
 
 export const DeliveryAdress = styled.section`
   background-color: ${(props) => props.theme["gray-200"]};
   border-radius: 6px;
 
-  padding: 2.5rem;
+  padding: 1rem 2.5rem 2.5rem 2.5rem;
   display: grid;
   width: fit-content;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 2.75rem 2.75rem 2.75rem 2.75rem;
+  grid-template-rows: 5rem 2.75rem 2.75rem 2.75rem 2.75rem;
   gap: 0.75rem;
 
   div:first-child {
     grid-column: 1 / 4;
     grid-row: 1 / 2;
-
-    margin-bottom: 2rem;
   }
 
   div > input,
@@ -35,6 +48,15 @@ export const DeliveryAdress = styled.section`
     border: 1px solid ${(props) => props.theme["gray-400"]};
     border-radius: 4px;
     padding-left: 0.75rem;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
   }
 
   .cep {
@@ -108,6 +130,15 @@ export const PaymentOptions = styled.section`
 
   margin-top: 0.75rem;
   padding: 2.5rem;
+
+  h3 {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
 `;
 
 export const OrderOverview = styled.section``;
