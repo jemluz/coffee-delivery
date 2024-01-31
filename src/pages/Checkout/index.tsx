@@ -1,10 +1,56 @@
-import { CurrencyDollar, MapPinLine } from "phosphor-react";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
 import { MainGrid } from "../../styles/global";
 import { UF_states } from "../../utils/states";
-import { CheckoutGrid, CompleteOrderForm, DeliveryAdress, FormLabel, Heading3, OrderOverview, PaymentOptions } from "./styles";
+import { CheckoutGrid, CompleteOrderForm, DeliveryAdress, FormLabel, Heading3, OrderOverview, PaymentOptions, PaymentType, PaymentTypeButton } from "./styles";
 import { defaultTheme } from "../../styles/defaultTheme";
+import { Controller, useForm } from "react-hook-form";
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const adressSchema = zod.object({
+  postalCode: zod.number(),
+  street: zod.string(),
+  number: zod.string(),
+  additionalInfo: zod.string(),
+  neightborhood: zod.string(),
+  city: zod.string(),
+  uf: zod.string(),
+})
+
+const paymentSchema = zod.object({
+  type: zod.enum(['credit', 'debit', 'cash'])
+})
+
+const itemSchema = zod.object({
+  name: zod.string(),
+  price: zod.number(),
+  quantity: zod.number(),
+})
+
+const newOrderSchema = zod.object({
+  adress: adressSchema,
+  payment: paymentSchema,
+  items: zod.array(itemSchema)
+})
+
+type newOrderFormInputs = zod.infer<typeof newOrderSchema>;
 
 export function Checkout() {
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting }
+  } = useForm<newOrderFormInputs>({
+    resolver: zodResolver(newOrderSchema),
+    defaultValues: {
+      payment: {
+        type: 'credit'
+      }
+    }
+  })
+
   return (
     <MainGrid>
       <CheckoutGrid>
@@ -53,11 +99,32 @@ export function Checkout() {
               </div>
             </FormLabel>
 
-            <select name="payment_method" id="">
-              <option value="credit_card">Cartão de crédito</option>
-              <option value="debit_card">cartão de débito</option>
-              <option value="cash">Dinheiro</option>
-            </select>
+            <Controller
+              control={control}
+              name="payment"
+              render={({ field }) => {
+                console.log(field)
+                return (
+                  <PaymentType
+                    onValueChange={field.onChange}
+                    value={field.value.type}
+                  >
+                    <PaymentTypeButton value="credit">
+                      <CreditCard size={24} />
+                      Cartão de crédito
+                    </PaymentTypeButton>
+                    <PaymentTypeButton value="debit">
+                      <Bank size={24} />
+                      Cartão de débito
+                    </PaymentTypeButton>
+                    <PaymentTypeButton value="cash">
+                      <Money size={24} />
+                      Dinheiro
+                    </PaymentTypeButton>
+                  </PaymentType>
+                )
+              }}
+            />
           </PaymentOptions>
         </CompleteOrderForm>
 
