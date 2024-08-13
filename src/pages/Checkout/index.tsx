@@ -1,12 +1,16 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
 import { MainGrid } from "../../styles/global";
 import { UF_states } from "../../utils/states";
-import { CheckoutGrid, DeliveryAdress, FormLabel, Heading3, NewOrderForm, OrderOverview, PaymentOptions, PaymentType, PaymentTypeButton } from "./styles";
+import { CompleteOrder, EditItem, FormLabel, ItemInfo, NameAndPrice, NewOrderForm, OrderOverview, Quantity, Remove, SelectedCoffes, SelectedItem } from "./styles";
 import { defaultTheme } from "../../styles/defaultTheme";
 import { Controller, useForm } from "react-hook-form";
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { uid } from "../../utils/coffeUtils";
+import { DeliveryAdress } from "./components/DeliveryAdress.styles";
+import { PaymentOptions, PaymentType, PaymentTypeButton } from "./components/PaymentOptions.styles";
+import { useState } from "react";
+import { productsData } from "../../utils/products";
 
 const NewOrderSchema = zod.object({
   adress: zod.object({
@@ -38,96 +42,136 @@ export function Checkout() {
     handleSubmit,
     reset,
     formState: { isSubmitting }
-  } = useForm<NewOrderFormData>()
+  } = useForm<NewOrderFormData>({
+    resolver: zodResolver(NewOrderSchema)
+  })
+
+  const [selectedItems, setSelectedItems] = useState([productsData[0], productsData[1]])
 
   async function handleNewOrderFormSubmit(data: NewOrderFormData) {
     console.log(data)
   }
 
+  function formatPrice(value: number) {
+    return value.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+  }
+
   return (
     <MainGrid>
-      <CheckoutGrid>
-        <NewOrderForm onSubmit={handleSubmit(handleNewOrderFormSubmit)}>
-          <Heading3>Complete o seu pedido</Heading3>
+      <NewOrderForm onSubmit={handleSubmit(handleNewOrderFormSubmit)}>
+        <CompleteOrder>Complete o seu pedido</CompleteOrder>
 
-          <DeliveryAdress>
-            <FormLabel>
-              <MapPinLine size={24} color={defaultTheme["yellow-700"]} />
-              <div>
-                <h3>Endereço de Entrega</h3>
-                <p>Informe o endereço onde deseja receber seu pedido</p>
-              </div>
-            </FormLabel>
-
-            <div className="cep">
-              <input type="number" placeholder="CEP" id="" {...register('adress.postalCode')}/>
+        <DeliveryAdress>
+          <FormLabel>
+            <MapPinLine size={24} color={defaultTheme["yellow-700"]} />
+            <div>
+              <h3>Endereço de Entrega</h3>
+              <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
-            <div className="street">
-              <input type="text" placeholder="Rua" id="" {...register('adress.street')}/>
+          </FormLabel>
+
+          <label className="cep">
+            <input type="number" placeholder="CEP" id="" {...register('adress.postalCode')}/>
+          </label>
+
+          <label className="street">
+            <input type="text" placeholder="Rua" id="" {...register('adress.street')}/>
+          </label>
+
+          <label className="number_and_info">
+            <input type="text" placeholder="Número" id="" {...register('adress.number')}/>
+            <input type="text" placeholder="Complemento" id="" {...register('adress.additionalInfo')}/>
+          </label>
+
+          <label className="neighborhood_city_and_uf">
+            <input type="text" placeholder="Bairro" id="" {...register('adress.neightborhood')}/>
+            <input type="text" placeholder="Cidade" id="" {...register('adress.city')}/>
+            <select id="" {...register('adress.uf')}>
+              <option defaultValue="UF" disabled>UF</option>
+              {
+                UF_states.map(uf => {
+                  return <option key={uid()} value={uf.acronym}>{uf.acronym}</option>
+                })
+              }
+            </select>
+          </label>
+
+        </DeliveryAdress>
+
+        <PaymentOptions>
+          <FormLabel>
+            <CurrencyDollar size={24} color={defaultTheme["purple-500"]} />
+            <div>
+              <h3>Pagamento</h3>
+              <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
             </div>
-            <div className="number_and_info">
-              <input type="text" placeholder="Número" id="" {...register('adress.number')}/>
-              <input type="text" placeholder="Complemento" id="" {...register('adress.additionalInfo')}/>
-            </div>
-            <div className="neighborhood_city_and_uf">
-              <input type="text" placeholder="Bairro" id="" {...register('adress.neightborhood')}/>
-              <input type="text" placeholder="Cidade" id="" {...register('adress.city')}/>
-              <select id="" {...register('adress.uf')}>
-                <option defaultValue="UF" disabled>UF</option>
-                {
-                  UF_states.map(uf => {
-                    return <option key={uid()} value={uf.acronym}>{uf.acronym}</option>
-                  })
-                }
-              </select>
-            </div>
-          </DeliveryAdress>
+          </FormLabel>
 
-          <PaymentOptions>
-            <FormLabel>
-              <CurrencyDollar size={24} color={defaultTheme["purple-500"]} />
-              <div>
-                <h3>Pagamento</h3>
-                <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
-              </div>
-            </FormLabel>
+          <Controller
+            control={control}
+            name="payment"
+            render={({ field }) => {
+              return (
+                <PaymentType
+                  onValueChange={field.onChange}
+                  value={String(field.value)}
+                >
+                  <PaymentTypeButton value="credit">
+                    <CreditCard size={24} />
+                    Cartão de crédito
+                  </PaymentTypeButton>
+                  <PaymentTypeButton value="debit">
+                    <Bank size={24} />
+                    Cartão de débito
+                  </PaymentTypeButton>
+                  <PaymentTypeButton value="cash">
+                    <Money size={24} />
+                    Dinheiro
+                  </PaymentTypeButton>
+                </PaymentType>
+              )
+            }}
+          />
+        </PaymentOptions>
 
-            {/* <Controller
-              control={control}
-              name="payment"
-              render={({ field }) => {
-                console.log(field)
-                return (
-                  <PaymentType
-                    onValueChange={field.onChange}
-                    value={field.value.type}
-                  >
-                    <PaymentTypeButton value="credit">
-                      <CreditCard size={24} />
-                      Cartão de crédito
-                    </PaymentTypeButton>
-                    <PaymentTypeButton value="debit">
-                      <Bank size={24} />
-                      Cartão de débito
-                    </PaymentTypeButton>
-                    <PaymentTypeButton value="cash">
-                      <Money size={24} />
-                      Dinheiro
-                    </PaymentTypeButton>
-                  </PaymentType>
-                )
-              }}
-            /> */}
-          </PaymentOptions>
 
-          <OrderOverview>
+        <SelectedCoffes>Cafés selecionados</SelectedCoffes>
+        <OrderOverview>
 
-          </OrderOverview>
+            {selectedItems.map(coffe => {
+              return <SelectedItem>
+                <img src={coffe.imgUrl} alt="" />
+                <ItemInfo>
+                  <NameAndPrice>
+                    <p>{coffe.name}</p>
+                    <strong>{formatPrice(coffe.price)}</strong>
+                  </NameAndPrice>
+                  <EditItem>
+                    <Quantity>
+                      <button>
+                        <Minus color={defaultTheme["purple-500"]}/>
+                      </button>
 
-          <button type="submit">nova ordem</button>
-        </NewOrderForm>
+                      <input type="text" value={1}/>
 
-      </CheckoutGrid>
+                      <button>
+                        <Plus color={defaultTheme["purple-500"]}/>
+                      </button>
+                    </Quantity>
+                    <Remove>
+                      <Trash color={defaultTheme["purple-500"]}/>
+                    </Remove>
+                  </EditItem>
+                </ItemInfo>
+              </SelectedItem>
+            })}
+
+        </OrderOverview>
+
+      </NewOrderForm>
     </MainGrid>
   )
 }
