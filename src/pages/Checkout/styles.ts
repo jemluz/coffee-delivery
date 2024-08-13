@@ -10,7 +10,7 @@ export const CheckoutGrid = styled.div`
   align-items: center;
 `;
 
-export const CompleteOrderForm = styled.div`
+export const NewOrderForm = styled.form`
   margin-top: 3rem;
 `;
 
@@ -197,4 +197,11 @@ export const PaymentTypeButton = styled(RadioGroup.Item)`
   }
 `;
 
-export const OrderOverview = styled.section``;
+export const OrderOverview = styled.section`
+  background-color: ${(props) => props.theme["gray-200"]};
+`;
+
+export const SelectedItem = styled.section`
+  display: flex;
+  align-items: space-between;
+`;

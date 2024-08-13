@@ -1,39 +1,35 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
 import { MainGrid } from "../../styles/global";
 import { UF_states } from "../../utils/states";
-import { CheckoutGrid, CompleteOrderForm, DeliveryAdress, FormLabel, Heading3, OrderOverview, PaymentOptions, PaymentType, PaymentTypeButton } from "./styles";
+import { CheckoutGrid, DeliveryAdress, FormLabel, Heading3, NewOrderForm, OrderOverview, PaymentOptions, PaymentType, PaymentTypeButton } from "./styles";
 import { defaultTheme } from "../../styles/defaultTheme";
 import { Controller, useForm } from "react-hook-form";
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { uid } from "../../utils/coffeUtils";
 
-const adressSchema = zod.object({
-  postalCode: zod.number(),
-  street: zod.string(),
-  number: zod.string(),
-  additionalInfo: zod.string(),
-  neightborhood: zod.string(),
-  city: zod.string(),
-  uf: zod.string(),
+const NewOrderSchema = zod.object({
+  adress: zod.object({
+    postalCode: zod.number(),
+    street: zod.string(),
+    number: zod.string(),
+    additionalInfo: zod.string(),
+    neightborhood: zod.string(),
+    city: zod.string(),
+    uf: zod.string(),
+  }),
+  payment: zod.object({
+    type: zod.enum(['credit', 'debit', 'cash'])
+  }),
+  items: zod.array(zod.object({
+    id: zod.string(),
+    name: zod.string(),
+    price: zod.number(),
+    quantity: zod.number(),
+  }))
 })
 
-const paymentSchema = zod.object({
-  type: zod.enum(['credit', 'debit', 'cash'])
-})
-
-const itemSchema = zod.object({
-  name: zod.string(),
-  price: zod.number(),
-  quantity: zod.number(),
-})
-
-const newOrderSchema = zod.object({
-  adress: adressSchema,
-  payment: paymentSchema,
-  items: zod.array(itemSchema)
-})
-
-type newOrderFormInputs = zod.infer<typeof newOrderSchema>;
+type NewOrderFormData = zod.infer<typeof NewOrderSchema>;
 
 export function Checkout() {
   const {
@@ -42,19 +38,16 @@ export function Checkout() {
     handleSubmit,
     reset,
     formState: { isSubmitting }
-  } = useForm<newOrderFormInputs>({
-    resolver: zodResolver(newOrderSchema),
-    defaultValues: {
-      payment: {
-        type: 'credit'
-      }
-    }
-  })
+  } = useForm<NewOrderFormData>()
+
+  async function handleNewOrderFormSubmit(data: NewOrderFormData) {
+    console.log(data)
+  }
 
   return (
     <MainGrid>
       <CheckoutGrid>
-        <CompleteOrderForm>
+        <NewOrderForm onSubmit={handleSubmit(handleNewOrderFormSubmit)}>
           <Heading3>Complete o seu pedido</Heading3>
 
           <DeliveryAdress>
@@ -67,23 +60,23 @@ export function Checkout() {
             </FormLabel>
 
             <div className="cep">
-              <input type="number" name="cep" placeholder="CEP" id="" />
+              <input type="number" placeholder="CEP" id="" {...register('adress.postalCode')}/>
             </div>
             <div className="street">
-              <input type="text" name="street" placeholder="Rua" id="" />
+              <input type="text" placeholder="Rua" id="" {...register('adress.street')}/>
             </div>
             <div className="number_and_info">
-              <input type="text" name="number" placeholder="Número" id="" />
-              <input type="text" name="additional_info" placeholder="Complemento" id="" />
+              <input type="text" placeholder="Número" id="" {...register('adress.number')}/>
+              <input type="text" placeholder="Complemento" id="" {...register('adress.additionalInfo')}/>
             </div>
             <div className="neighborhood_city_and_uf">
-              <input type="text" name="neighborhood" placeholder="Bairro" id="" />
-              <input type="text" name="city" placeholder="Cidade" id="" />
-              <select name="uf" id="" >
-                <option value="UF" selected disabled>UF</option>
+              <input type="text" placeholder="Bairro" id="" {...register('adress.neightborhood')}/>
+              <input type="text" placeholder="Cidade" id="" {...register('adress.city')}/>
+              <select id="" {...register('adress.uf')}>
+                <option defaultValue="UF" disabled>UF</option>
                 {
                   UF_states.map(uf => {
-                    return <option value={uf.acronym}>{uf.acronym}</option>
+                    return <option key={uid()} value={uf.acronym}>{uf.acronym}</option>
                   })
                 }
               </select>
@@ -99,7 +92,7 @@ export function Checkout() {
               </div>
             </FormLabel>
 
-            <Controller
+            {/* <Controller
               control={control}
               name="payment"
               render={({ field }) => {
@@ -124,13 +117,16 @@ export function Checkout() {
                   </PaymentType>
                 )
               }}
-            />
+            /> */}
           </PaymentOptions>
-        </CompleteOrderForm>
 
-        <OrderOverview>
+          <OrderOverview>
 
-        </OrderOverview>
+          </OrderOverview>
+
+          <button type="submit">nova ordem</button>
+        </NewOrderForm>
+
       </CheckoutGrid>
     </MainGrid>
   )
