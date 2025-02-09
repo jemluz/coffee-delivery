@@ -1,7 +1,7 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
 import { MainGrid } from "../../styles/global";
 import { UF_states } from "../../utils/states";
-import { CompleteOrder, EditItem, FormLabel, ItemInfo, NameAndPrice, NewOrderForm, OrderOverview, Quantity, Remove, SelectedCoffes, SelectedItem } from "./styles";
+import { CompleteOrder, ConfirmOrderButton, EditItem, FormLabel, ItemInfo, NameAndPrice, NewOrderForm, OrderOverview, Quantity, Remove, SelectedCoffes, SelectedItem, TotalCalculations } from "./styles";
 import { defaultTheme } from "../../styles/defaultTheme";
 import { Controller, useForm } from "react-hook-form";
 import * as zod from 'zod'
@@ -137,10 +137,8 @@ export function Checkout() {
           />
         </PaymentOptions>
 
-
         <SelectedCoffes>Cafés selecionados</SelectedCoffes>
         <OrderOverview>
-
             {selectedItems.map(coffe => {
               return <SelectedItem>
                 <img src={coffe.imgUrl} alt="" />
@@ -169,6 +167,13 @@ export function Checkout() {
               </SelectedItem>
             })}
 
+          <TotalCalculations>
+            <p>Total de itens <span>R$ 29,70</span></p>
+            <p>Entrega <span>R$ 3,50</span></p>
+            <p>Total <span>R$ 33,20</span></p>
+          </TotalCalculations>
+
+          <ConfirmOrderButton>Confirmar Pedido</ConfirmOrderButton>
         </OrderOverview>
 
       </NewOrderForm>

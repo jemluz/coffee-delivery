@@ -51,13 +51,19 @@ export const SelectedItem = styled.section`
 
   width: 100%;
 
+  border-bottom: 1px solid ${(props) => props.theme["gray-500"]};
+  padding-bottom: 1.5rem;
+
   img {
     width: 4rem;
     height: 4rem;
     margin-right: 1rem;
   }
 
-  margin-bottom: 2rem;
+  &+section {
+    margin-top: 1.5rem;
+  }
+
 `;
 
 export const ItemInfo = styled.div`
@@ -126,5 +132,52 @@ export const Remove = styled.button`
 
   &:hover {
     cursor: pointer;
+  }
+`
+
+export const TotalCalculations = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 1.5rem;
+  padding: 0px .2rem;
+
+  p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 0.5rem;
+
+    font-size: .9rem;
+  }
+
+  p:last-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    margin-top: .4rem;
+  }
+`
+
+export const ConfirmOrderButton = styled.button`
+  background: ${(props) => props.theme["yellow-500"]};
+  border: 1px solid ${(props) => props.theme["yellow-500"]};
+  border-radius: 5px;
+
+  color: ${(props) => props.theme["white"]};
+  font-weight: bold;
+  font-size: .8rem;
+  text-transform: uppercase;
+
+  padding: .8rem .5rem;
+  margin-top: .8rem;
+
+  &:hover {
+    cursor: pointer;
+
+    background: ${(props) => props.theme["yellow-700"]};
+    border-color: ${(props) => props.theme["yellow-500"]};
   }
 `
